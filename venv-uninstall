@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if (( $# != 2 )); then
+    echo "Illegal number of parameters, usage: venv-uninstall <PACKAGE> <COMMAND>"
+    exit 1
+fi
+ 
+PACKAGE=$1
+COMMAND=$2
+
+echo "Uninstalling package '$PACKAGE' with command '$COMMAND'..."
+
+VENV_PATH=~/venvs/$PACKAGE
+BIN_PATH=/usr/bin
+COMMAND_BIN_PATH=$BIN_PATH/$COMMAND
+
+# check if venv exists
+if test -d "$VENV_PATH"; then
+  rm -r $VENV_PATH
+else
+  echo "VENV directory doesn't exist, ignoring"
+fi
+
+if test -f "$COMMAND_BIN_PATH"; then
+  sudo rm $COMMAND_BIN_PATH
+else
+  echo "$COMMAND_BIN_PATH file doesn't exist, ignoring"
+fi

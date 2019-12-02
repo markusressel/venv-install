@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if (( $# < 2 )); then
+    echo "Illegal number of parameters, usage: venv-install <PACKAGE> <COMMAND> [ARGS]"
+    exit 1
+fi
  
 PACKAGE=$1
 COMMAND=$2
@@ -43,7 +48,7 @@ else
       exit 1
     fi
 
-    echo "$PACKAGE package is not installed, installing..."
+    echo "$PACKAGE package is not installed inside venv, installing..."
     pip install $PACKAGE
 fi
 
@@ -52,14 +57,12 @@ if test -f "$COMMAND_BIN_PATH"; then
   :
 else
   # create easy access binary
-  echo "creating helper script in $BIN_PATH..."
+  echo "Creating helper script '$COMMAND_BIN_PATH'..."
   cat << EOL | sudo tee $COMMAND_BIN_PATH
 #!/bin/bash
 /usr/bin/venv-install "${PACKAGE}" "${COMMAND}" "\$@"
 EOL
-
   sudo chmod +x $COMMAND_BIN_PATH
-
 fi
 
 $COMMAND $ARGS
