@@ -28,6 +28,14 @@ This will copy the scripts to `/usr/bin/` and make them executable.
 venv-install <package-name> <command> <arg1> <arg2>
 ```
 
+This will create a new venv for the package-command combo in `~/venvs/`,
+install the required package inside of it. Additionally it creates a
+simple bash script in `/usr/bin/<command>` to make it easier to call this
+command lateron. Finally it will execute the given command including the given args.
+
+Since you will use `<command> <arg1>` lateron you can omit the args in this first run 
+which will probably print the help of the command if it works as expected.
+
 ## Using a command
 
 From then on you can use:
