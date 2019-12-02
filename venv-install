@@ -10,7 +10,7 @@ ARGS=${@:3}
 
 
 VENV_PATH=~/venvs/$PACKAGE
-ACTIVATE_SCRIPT=~/venvs/$PACKAGE/bin/activate
+ACTIVATE_SCRIPT=$VENV_PATH/bin/activate
 BIN_PATH=/usr/bin
 COMMAND_BIN_PATH=$BIN_PATH/$COMMAND
 
@@ -19,7 +19,7 @@ if test -d "$VENV_PATH"; then
   :
 else
   # create new venv
-  echo "$VENV_PATH does not exist"
+  echo "Expected venv path '$VENV_PATH' does not exist, creating new venv for package '$PACKAGE'..."
   mkdir -p $VENV_PATH
   python3 -m venv $VENV_PATH
 fi
