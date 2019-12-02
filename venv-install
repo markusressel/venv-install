@@ -38,7 +38,7 @@ else
       # everything is fine
       :
     else
-      echo "Package $PACKAGE does not exist"
+      echo "No PyPi package with name '$PACKAGE' found"
       deactivate
       exit 1
     fi
