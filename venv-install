@@ -6,7 +6,7 @@ ARGS=${@:3}
 
 #echo "package: $PACKAGE"
 #echo "command: $COMMAND"
-echo "args: $ARGS"
+#echo "args: $ARGS"
 
 
 VENV_PATH=~/venvs/$PACKAGE
@@ -55,7 +55,7 @@ else
   echo "creating helper script in $BIN_PATH..."
   cat << EOL | sudo tee $COMMAND_BIN_PATH
 #!/bin/bash
-/usr/bin/run-env-command "${PACKAGE}" "${COMMAND}" "\$@"
+/usr/bin/venv-install "${PACKAGE}" "${COMMAND}" "\$@"
 EOL
 
   sudo chmod +x $COMMAND_BIN_PATH
