@@ -36,7 +36,7 @@ This will copy the scripts to `/usr/bin/` and make them executable.
 ## Installing a command
 
 ```bash
-venv-install <package-name> <command> <arg1> <arg2>
+venv-install <package-name> <command>
 ```
 
 This will create a new venv for the package-command combo in `~/venvs/`,
