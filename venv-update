@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if (( $# < 2 )); then
+    echo "Illegal number of parameters, usage: venv-update <PACKAGE> <COMMAND> [ARGS]"
+    exit 1
+fi
+
+venv-uninstall "$@"
+venv-install "$@"

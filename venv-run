@@ -1,0 +1,44 @@
+#!/bin/bash
+
+if (( $# < 2 )); then
+    echo "Illegal number of parameters, usage: venv-install <PACKAGE> <COMMAND> [ARGS]"
+    exit 1
+fi
+ 
+PACKAGE=$1
+COMMAND=$2
+ARGS=${@:3}
+
+#echo "package: $PACKAGE"
+#echo "command: $COMMAND"
+#echo "args: $ARGS"
+
+
+VENV_PATH=~/venvs/$PACKAGE
+ACTIVATE_SCRIPT=$VENV_PATH/bin/activate
+BIN_PATH=/usr/bin
+COMMAND_BIN_PATH=$BIN_PATH/$COMMAND
+
+# check if venv exists
+if test -d "$VENV_PATH"; then
+  :
+else
+  echo "Expected venv path '$VENV_PATH' does not exist, please install using: venv-install '$PACKAGE' '$COMMAND'"
+  exit 0
+fi
+
+# switch to venv
+source "$ACTIVATE_SCRIPT"
+
+# check if package is installed
+if [[ $(pip freeze | grep $PACKAGE) ]]; then
+    :
+    # check for update?
+else
+    echo "Expected package '$PACKAGE' is not installed inside the venv in '$VENV_PATH', try reinstalling usind: venv-update '$PACKAGE' '$COMMAND'"
+    deactivate
+    exit 0
+fi
+
+$COMMAND $ARGS
+deactivate

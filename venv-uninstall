@@ -16,13 +16,17 @@ COMMAND_BIN_PATH=$BIN_PATH/$COMMAND
 
 # check if venv exists
 if test -d "$VENV_PATH"; then
+  echo "Removing venv '$VENV_PATH' ..."
   rm -r $VENV_PATH
 else
   echo "VENV directory doesn't exist, ignoring"
 fi
 
 if test -f "$COMMAND_BIN_PATH"; then
+  echo "Removing '$COMMAND_BIN_PATH' ..."
   sudo rm $COMMAND_BIN_PATH
 else
   echo "$COMMAND_BIN_PATH file doesn't exist, ignoring"
 fi
+
+echo "Done"
