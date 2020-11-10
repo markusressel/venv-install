@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit when any command fails
+set -e
+
 if (( $# != 2 )); then
     echo "Illegal number of parameters, usage: venv-uninstall <PACKAGE> <COMMAND>"
     exit 1
