@@ -22,7 +22,7 @@ else
   echo "VENV directory doesn't exist, ignoring"
 fi
 
-if test -f "$COMMAND_BIN_PATH"; then
+if test -L "$COMMAND_BIN_PATH"; then
   echo "Removing '$COMMAND_BIN_PATH' ..."
   sudo rm $COMMAND_BIN_PATH
 else
