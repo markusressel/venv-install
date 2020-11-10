@@ -13,10 +13,10 @@ ARGS=${@:3}
 #echo "command: $COMMAND"
 #echo "args: $ARGS"
 
-
-VENV_PATH=~/venvs/$PACKAGE
+VENV_PATH=~/.venvs/$PACKAGE
 ACTIVATE_SCRIPT=$VENV_PATH/bin/activate
-BIN_PATH=/usr/bin
+VENV_BIN_PATH=$VENV_PATH/bin/$COMMAND
+BIN_PATH=$HOME/.local/bin
 COMMAND_BIN_PATH=$BIN_PATH/$COMMAND
 
 echo "Installing '$COMMAND@$PACKAGE' ..."
@@ -52,7 +52,7 @@ else
 
     echo "Installing package '$PACKAGE' ..."
     pip install --upgrade pip
-    pip install $PACKAGE
+    pip install "$PACKAGE"
 fi
 
 deactivate
@@ -61,11 +61,8 @@ deactivate
 if test -f "$COMMAND_BIN_PATH"; then
   :
 else
-  # create easy access "binary"
-  echo "Creating helper run script '$COMMAND_BIN_PATH'..."
-  cat << EOL | sudo tee $COMMAND_BIN_PATH
-#!/bin/bash
-/usr/bin/venv-run "${PACKAGE}" "${COMMAND}" "\$@"
-EOL
-  sudo chmod +x $COMMAND_BIN_PATH
+  # create symlink to "binary"
+  echo "Creating symlink '$COMMAND_BIN_PATH' in $BIN_PATH..."
+  ln -s "$VENV_BIN_PATH" "$COMMAND_BIN_PATH"
+  sudo chmod +x "$COMMAND_BIN_PATH"
 fi

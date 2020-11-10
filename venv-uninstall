@@ -10,8 +10,8 @@ COMMAND=$2
 
 echo "Uninstalling package '$PACKAGE' with command '$COMMAND'..."
 
-VENV_PATH=~/venvs/$PACKAGE
-BIN_PATH=/usr/bin
+VENV_PATH=~/.venvs/$PACKAGE
+BIN_PATH=$HOME/.local/bin
 COMMAND_BIN_PATH=$BIN_PATH/$COMMAND
 
 # check if venv exists
