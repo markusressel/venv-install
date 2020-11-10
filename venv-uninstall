@@ -24,7 +24,7 @@ fi
 
 if test -L "$COMMAND_BIN_PATH"; then
   echo "Removing '$COMMAND_BIN_PATH' ..."
-  sudo rm $COMMAND_BIN_PATH
+  rm $COMMAND_BIN_PATH
 else
   echo "$COMMAND_BIN_PATH file doesn't exist, ignoring"
 fi

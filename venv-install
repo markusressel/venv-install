@@ -64,5 +64,5 @@ else
   # create symlink to "binary"
   echo "Creating symlink '$COMMAND_BIN_PATH' in $BIN_PATH..."
   ln -s "$VENV_BIN_PATH" "$COMMAND_BIN_PATH"
-  sudo chmod +x "$COMMAND_BIN_PATH"
+  chmod +x "$COMMAND_BIN_PATH"
 fi
