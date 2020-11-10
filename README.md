@@ -68,3 +68,8 @@ venv-uninstall <package-name> <command>
 ```
 
 This will remove the venv as well as the symlink to its binary.
+
+# Alternatives
+
+* [venvs](https://github.com/Julian/venvs)
+
