@@ -60,6 +60,15 @@ fi
 
 deactivate
 
+# check if "bin" path exists
+if test -d "$BIN_PATH"; then
+  :
+else
+  # create bin path
+  echo "Creating '$BIN_PATH' ..."
+  mkdir -p $BIN_PATH
+fi
+
 # check if /usr/bin script is available
 if test -f "$COMMAND_BIN_PATH"; then
   :
