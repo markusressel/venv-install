@@ -54,7 +54,7 @@ else
     #fi
 
     echo "Installing package '$PACKAGE' ..."
-    pip install --upgrade pip
+    pip install --upgrade pip wheel
     pip install "$PACKAGE"
 fi
 
